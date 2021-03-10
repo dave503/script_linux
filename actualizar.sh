@@ -6,6 +6,8 @@ sleep 2s
 
 sudo apt-get update
 
+echo *********************************************
+
 echo Instalando paquetes 
 
 sleep 2s
