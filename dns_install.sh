@@ -14,7 +14,7 @@ sleep 3s
 hostnamectl set-hostname $nombre_server
 echo --Nuevo nombre del server--
 hostnamectl
-echo
+echo " "
 echo *******************************************
 
 sleep 3s
@@ -45,22 +45,22 @@ sleep 3s
 echo Verificar el contenido de la carpeta bind -
 
 sudo ls /etc/bind
-echo
+echo " "
 echo ******************************
-echo
+echo " "
 echo Configurando zona del DNS
 sleep 5s
 echo Ingrese la raiz de la zona:
 read -p "Raiz de la zona para DNS: " root_zona
-echo 
+echo  " "
 echo Estas son las IP que tienen los adaptadores
 ifconfig
-echo
+echo " "
 echo Ingrese los primeros 3 octetos de la IP que desea configurar, por ejemplo: 0.168.192 para 192.168.0.X
 read -p "Fragamento de IP inversa: " ip_tres
 
 
-sudo echo '
+echo '
 // zona directa
 
 zone "'$root_zona'" IN {
@@ -73,7 +73,7 @@ file "/etc/bind/db.'$root_zona'";
 zone "'$ip_tres'.in-addr.arpa" IN {
 type master;
 file "/etc/bind/db.'$ip_tres'";
-};' >> /etc/bind/named.conf.local
+};' >> sudo /etc/bind/named.conf.local
 
 sudo sudo cat /etc/bind/named.conf.local
 
@@ -84,34 +84,34 @@ sudo cp /etc/bind/db.local /etc/bind/db.$root_zona
 sudo sudo cat /etc/bind/db.$root_zona
 
 echo ***************************************
-echo
+echo " "
 ifconfig
-echo
+echo " "
 read -p "Ingrese la IP que tendra el servidor DNS: " ip_server
 
 sudo sed -i "12,14d" /etc/bind/db.$root_zona
 
 sudo sed -i "s/localhost/$nombre_server/g" /etc/bind/db.$root_zona
-echo
-sudo echo "
+echo " "
+echo "
 @   IN  NS  $nombre_server
 @   IN  A   $ip_server
 server   IN  A   $ip_server
 host   IN  A   $ip_server
 client   IN  A   $ip_server
 www   IN  A   $ip_server
-" >> /etc/bind/db.$root_zona
+" >> sudo /etc/bind/db.$root_zona
 echo
 sudo cat /etc/bind/db.$root_zona
 echo --------------------------------------------------
-echo
+echo " "
 sudo cp /etc/bind/db.127 /etc/bind/db.$ip_tres
 echo
 sudo sed -i "12,13d" /etc/bind/db.$ip_tres
 
 sudo sed -i "s/localhost/$root_zona/g" /etc/bind/db.$ip_tres
-echo
-sudo echo "
+echo " "
+echo "
 @   IN  NS  $nombre_server
 @   IN  PTR   $root_zona
 server   IN  A   $ip_server
@@ -120,30 +120,30 @@ client   IN  A   $ip_server
 www   IN  A   $ip_server
 15  IN  PTR  $nombre_server
 15  IN  PTR  client.$root_zona
-" >> /etc/bind/db.$root_zona
+" >> sudo /etc/bind/db.$root_zona
 echo
 sudo sudo cat /etc/bind/db.$root_zona
 echo --------------------------------------------------
-echo
+echo " "
 echo Verificar la configuración del archivo named.conf ---
 sudo named-checkconf -z /etc/bind/named.conf
 echo 
 echo Verificar la configuración del archivo named.conf.local
 sudo named-checkconf -z /etc/bind/named.conf.local
-echo
+echo " "
 echo Verificar la configuración de la zona directa -----
 named-checkzone $root_zona /etc/bind/db.$root_zona
-echo
+echo " "
 echo Verificar la configuración de la zona inversa -----
 named-checkzone $root_zona /etc/bind/db.$ip_tres
-echo
+echo " "
 echo Iniciando el servidor------------------------------
 sudo systemctl start bind9
 sleep 5s
-echo
+echo " "
 echo Estado del servidor--------------------------------
 sudo systemctl status bind9
-echo
+echo " "
 sleep 5s
 echo ----Fin---- 
 echo ---- © ServiCod 2021 -----------------------------
