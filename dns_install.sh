@@ -111,17 +111,17 @@ sudo sed -i "12,13d" /etc/bind/db.$ip_tres
 
 sudo sed -i "s/localhost/$root_zona/g" /etc/bind/db.$ip_tres
 echo " "
-echo "
-@   IN  NS  $nombre_server
-@   IN  PTR   $root_zona
-server   IN  A   $ip_server
-host   IN  A   $ip_server
-client   IN  A   $ip_server
-www   IN  A   $ip_server
-15  IN  PTR  $nombre_server
-15  IN  PTR  client.$root_zona
-" >> sudo /etc/bind/db.$root_zona
-echo
+echo '
+@   IN  NS  '$nombre_server
+'@   IN  PTR   '$root_zona
+'server   IN  A   '$ip_server
+'host   IN  A   '$ip_server
+'client   IN  A   '$ip_server
+'www   IN  A   '$ip_server
+'15  IN  PTR  '$nombre_server
+'15  IN  PTR  client.'$root_zona
+ >> sudo /etc/bind/db.$root_zona
+echo " "
 sudo sudo cat /etc/bind/db.$root_zona
 echo --------------------------------------------------
 echo " "
