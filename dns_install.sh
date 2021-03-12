@@ -38,13 +38,13 @@ sleep 3s
 
 echo Instalando bind9 ------------------------
 
-sudo apt-get installbind9 bind9utils
+sudo apt-get -y install bind9 bind9utils
 
 sleep 3s
 
 echo Verificar el contenido de la carpeta bind -
 
-ls /etc/bind
+sudo ls /etc/bind
 echo
 echo ******************************
 echo
@@ -75,13 +75,13 @@ type master;
 file "/etc/bind/db.'$ip_tres'";
 };' >> /etc/bind/named.conf.local
 
-cat /etc/bind/named.conf.local
+sudo sudo cat /etc/bind/named.conf.local
 
 echo **************************************
 
 sudo cp /etc/bind/db.local /etc/bind/db.$root_zona
 
-cat /etc/bind/db.$root_zona
+sudo sudo cat /etc/bind/db.$root_zona
 
 echo ***************************************
 echo
@@ -102,7 +102,7 @@ client   IN  A   $ip_server
 www   IN  A   $ip_server
 " >> /etc/bind/db.$root_zona
 echo
-cat /etc/bind/db.$root_zona
+sudo cat /etc/bind/db.$root_zona
 echo --------------------------------------------------
 echo
 sudo cp /etc/bind/db.127 /etc/bind/db.$ip_tres
@@ -122,7 +122,7 @@ www   IN  A   $ip_server
 15  IN  PTR  client.$root_zona
 " >> /etc/bind/db.$root_zona
 echo
-sudo cat /etc/bind/db.$root_zona
+sudo sudo cat /etc/bind/db.$root_zona
 echo --------------------------------------------------
 echo
 echo Verificar la configuración del archivo named.conf ---
