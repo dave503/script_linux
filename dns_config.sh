@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo sudo cat /etc/bind/db.$root_zona
-
+sudo chmod -R 777 /etc/bind/
 echo ------------------------------------------------
 echo " "
 ifconfig
@@ -14,7 +14,7 @@ sudo sed -i "s/localhost/$nombre_server/g" /etc/bind/db.$root_zona
 echo " "
 sudo sudo cat /etc/bind/db.$root_zona
 
-echo sudo "
+echo "
 @   IN  NS  $nombre_server
 @   IN  A   $ip_server
 server   IN  A   $ip_server
