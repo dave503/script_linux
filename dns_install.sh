@@ -44,6 +44,8 @@ sleep 3s
 
 echo Verificar el contenido de la carpeta bind -
 
+sudo chmod -R 777 /etc/bind/
+
 sudo ls /etc/bind
 echo " "
 echo ------------------------------------------------
@@ -73,7 +75,7 @@ file '"/etc/bind/db.$root_zona"';
 zone '"$ip_tres.in-addr.arpa"' IN {
 type master;
 file '"/etc/bind/db.$ip_tres"';
-};" >> sudo /etc/bind/named.conf.local
+};" >> /etc/bind/named.conf.local
 
 sudo sudo cat /etc/bind/named.conf.local
 
@@ -100,7 +102,7 @@ server   IN  A   $ip_server
 host   IN  A   $ip_server
 client   IN  A   $ip_server
 www   IN  A   $ip_server
-" >> sudo /etc/bind/db.$root_zona
+" >> /etc/bind/db.$root_zona
 
 echo ---------------------------------------------------
 sudo cat /etc/bind/db.$root_zona
@@ -121,7 +123,7 @@ client   IN  A   $ip_server
 www   IN  A   $ip_server
 15  IN  PTR  $nombre_server
 15  IN  PTR  client.$root_zona
- ">> sudo /etc/bind/db.$root_zona
+ ">> /etc/bind/db.$root_zona
 echo " "
 sudo sudo cat /etc/bind/db.$root_zona
 echo --------------------------------------------------
