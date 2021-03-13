@@ -46,7 +46,7 @@ echo Verificar el contenido de la carpeta bind -
 
 sudo chmod -R 777 /etc/bind/
 
-sudo ls /etc/bind
+sudo ls /etc/bind/
 echo " "
 echo ------------------------------------------------
 echo " "
@@ -85,6 +85,8 @@ sudo cp /etc/bind/db.local /etc/bind/db.$root_zona
 
 sudo sudo cat /etc/bind/db.$root_zona
 
+sudo chmod -R 777 /etc/bind/
+
 echo ------------------------------------------------
 echo " "
 ifconfig
@@ -96,12 +98,12 @@ sudo sed -i "12,14d" /etc/bind/db.$root_zona
 sudo sed -i "s/localhost/$nombre_server/g" /etc/bind/db.$root_zona
 echo " "
 echo "
-@   IN  NS  $nombre_server
-@   IN  A   $ip_server
-server   IN  A   $ip_server
-host   IN  A   $ip_server
-client   IN  A   $ip_server
-www   IN  A   $ip_server
+@       IN  NS  $nombre_server
+@       IN  A   $ip_server
+server  IN  A   $ip_server
+host    IN  A   $ip_server
+client  IN  A   $ip_server
+www     IN  A   $ip_server
 " >> /etc/bind/db.$root_zona
 
 echo ---------------------------------------------------
@@ -115,15 +117,15 @@ sudo sed -i "12,13d" /etc/bind/db.$ip_tres
 sudo sed -i "s/localhost/$root_zona/g" /etc/bind/db.$ip_tres
 echo " "
 echo "
-@   IN  NS  $nombre_server
-@   IN  PTR   $root_zona
-server   IN  A   $ip_server
-host   IN  A   $ip_server
-client   IN  A   $ip_server
-www   IN  A   $ip_server
-15  IN  PTR  $nombre_server
-15  IN  PTR  client.$root_zona
- ">> /etc/bind/db.$ip_tres
+@       IN  NS   $nombre_server
+@       IN  PTR  $root_zona
+server  IN  A    $ip_server
+host    IN  A    $ip_server
+client  IN  A    $ip_server
+www     IN  A    $ip_server
+15      IN  PTR  $nombre_server
+15      IN  PTR  client.$root_zona
+" >> /etc/bind/db.$ip_tres
 echo " "
 sudo sudo cat /etc/bind/db.$ip_tres
 echo --------------------------------------------------
