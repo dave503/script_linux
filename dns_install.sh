@@ -61,7 +61,7 @@ echo " "
 echo Ingrese los primeros 3 octetos de la IP que desea configurar, por ejemplo: 0.168.192 para 192.168.0.X
 read -p "Fragamento de IP inversa: " ip_tres
 
-echo '
+echo "
 // zona directa
 
 zone "$root_zona" IN {
@@ -74,7 +74,7 @@ file "/etc/bind/db.$root_zona";
 zone "$ip_tres.in-addr.arpa" IN {
 type master;
 file "/etc/bind/db.$ip_tres";
-};' >> /etc/bind/named.conf.local
+};" >> /etc/bind/named.conf.local
 
 sudo sudo cat /etc/bind/named.conf.local
 
