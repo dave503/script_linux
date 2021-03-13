@@ -123,9 +123,9 @@ client   IN  A   $ip_server
 www   IN  A   $ip_server
 15  IN  PTR  $nombre_server
 15  IN  PTR  client.$root_zona
- ">> /etc/bind/db.$root_zona
+ ">> /etc/bind/db.$ip_tres
 echo " "
-sudo sudo cat /etc/bind/db.$root_zona
+sudo sudo cat /etc/bind/db.$ip_tres
 echo --------------------------------------------------
 echo " "
 echo Verificar la configuración del archivo named.conf ---
