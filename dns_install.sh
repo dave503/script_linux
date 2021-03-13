@@ -102,7 +102,7 @@ client   IN  A   $ip_server
 www   IN  A   $ip_server
 " >> sudo /etc/bind/db.$root_zona
 
-echo---------------------------------------------------
+echo ---------------------------------------------------
 sudo cat /etc/bind/db.$root_zona
 echo --------------------------------------------------
 echo " "
