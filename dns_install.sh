@@ -64,16 +64,16 @@ read -p "Fragamento de IP inversa: " ip_tres
 echo '
 // zona directa
 
-zone '"$root_zona"' IN {
+zone "$root_zona" IN {
 type master;
-file '"/etc/bind/db.$root_zona"';
+file "/etc/bind/db.$root_zona";
 };
 
 // zona inversa
 
-zone '"$ip_tres.in-addr.arpa"' IN {
+zone "$ip_tres.in-addr.arpa" IN {
 type master;
-file '"/etc/bind/db.$ip_tres"';
+file "/etc/bind/db.$ip_tres";
 };' >> /etc/bind/named.conf.local
 
 sudo sudo cat /etc/bind/named.conf.local
