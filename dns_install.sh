@@ -4,7 +4,7 @@ echo Verificar el nombre del servidor ---------
 
 hostnamectl
 
-echo *******************************************
+echo ---------------------------------------------------
 sleep 3s
 
 echo Cambiando nombre del servidor ----------
@@ -15,7 +15,7 @@ hostnamectl set-hostname $nombre_server
 echo --Nuevo nombre del server--
 hostnamectl
 echo " "
-echo *******************************************
+echo ---------------------------------------------------
 
 sleep 3s
 
@@ -23,7 +23,7 @@ echo Instalando herramientas de red ---------
 
 sudo apt -y install net-tools
 
-echo *******************************************
+echo ---------------------------------------------------
 
 sleep 3s
 
@@ -46,7 +46,7 @@ echo Verificar el contenido de la carpeta bind -
 
 sudo ls /etc/bind
 echo " "
-echo ******************************
+echo ------------------------------------------------
 echo " "
 echo Configurando zona del DNS
 sleep 5s
@@ -60,30 +60,30 @@ echo Ingrese los primeros 3 octetos de la IP que desea configurar, por ejemplo: 
 read -p "Fragamento de IP inversa: " ip_tres
 
 
-echo '
+echo "
 // zona directa
 
-zone "'$root_zona'" IN {
+zone '"$root_zona"' IN {
 type master;
-file "/etc/bind/db.'$root_zona'";
+file '"/etc/bind/db.$root_zona"';
 };
 
 // zona inversa
 
-zone "'$ip_tres'.in-addr.arpa" IN {
+zone '"$ip_tres.in-addr.arpa"' IN {
 type master;
-file "/etc/bind/db.'$ip_tres'";
-};' >> sudo /etc/bind/named.conf.local
+file '"/etc/bind/db.$ip_tres"';
+};" >> sudo /etc/bind/named.conf.local
 
 sudo sudo cat /etc/bind/named.conf.local
 
-echo **************************************
+echo ------------------------------------------------
 
 sudo cp /etc/bind/db.local /etc/bind/db.$root_zona
 
 sudo sudo cat /etc/bind/db.$root_zona
 
-echo ***************************************
+echo ------------------------------------------------
 echo " "
 ifconfig
 echo " "
@@ -101,7 +101,8 @@ host   IN  A   $ip_server
 client   IN  A   $ip_server
 www   IN  A   $ip_server
 " >> sudo /etc/bind/db.$root_zona
-echo
+
+echo---------------------------------------------------
 sudo cat /etc/bind/db.$root_zona
 echo --------------------------------------------------
 echo " "
@@ -111,16 +112,16 @@ sudo sed -i "12,13d" /etc/bind/db.$ip_tres
 
 sudo sed -i "s/localhost/$root_zona/g" /etc/bind/db.$ip_tres
 echo " "
-echo '
-@   IN  NS  '$nombre_server
-'@   IN  PTR   '$root_zona
-'server   IN  A   '$ip_server
-'host   IN  A   '$ip_server
-'client   IN  A   '$ip_server
-'www   IN  A   '$ip_server
-'15  IN  PTR  '$nombre_server
-'15  IN  PTR  client.'$root_zona
- >> sudo /etc/bind/db.$root_zona
+echo "
+@   IN  NS  $nombre_server
+@   IN  PTR   $root_zona
+server   IN  A   $ip_server
+host   IN  A   $ip_server
+client   IN  A   $ip_server
+www   IN  A   $ip_server
+15  IN  PTR  $nombre_server
+15  IN  PTR  client.$root_zona
+ ">> sudo /etc/bind/db.$root_zona
 echo " "
 sudo sudo cat /etc/bind/db.$root_zona
 echo --------------------------------------------------
