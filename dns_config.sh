@@ -21,6 +21,6 @@ server   IN  A   $ip_server
 host   IN  A   $ip_server
 client   IN  A   $ip_server
 www   IN  A   $ip_server
-" >> sudo /etc/bind/db.$root_zona
+" >> /etc/bind/db.$root_zona
 
 sudo sudo cat /etc/bind/db.$root_zona
