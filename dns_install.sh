@@ -97,7 +97,7 @@ sudo sed -i "12,14d" /etc/bind/db.$root_zona
 sudo sed -i "s/localhost/$nombre_server/g" /etc/bind/db.$root_zona
 echo " "
 echo "
-@       IN  NS  $nombre_server
+@       IN  NS  $nombre_server.
 @       IN  A   $ip_server
 server  IN  A   $ip_server
 host    IN  A   $ip_server
@@ -117,7 +117,7 @@ sudo sed -i "s/localhost/$root_zona/g" /etc/bind/db.$ip_tres
 echo " "
 sudo chmod -R 777 /etc/bind/
 echo "
-@       IN  NS   $nombre_server
+@       IN  NS   $nombre_server.
 @       IN  PTR  $root_zona
 server  IN  A    $ip_server
 host    IN  A    $ip_server
