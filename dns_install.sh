@@ -61,7 +61,6 @@ echo " "
 echo Ingrese los primeros 3 octetos de la IP que desea configurar, por ejemplo: 0.168.192 para 192.168.0.X
 read -p "Fragamento de IP inversa: " ip_tres
 
-
 echo "
 // zona directa
 
@@ -116,6 +115,7 @@ sudo sed -i "12,13d" /etc/bind/db.$ip_tres
 
 sudo sed -i "s/localhost/$root_zona/g" /etc/bind/db.$ip_tres
 echo " "
+sudo chmod -R 777 /etc/bind/
 echo "
 @       IN  NS   $nombre_server
 @       IN  PTR  $root_zona
@@ -150,7 +150,7 @@ echo Estado del servidor--------------------------------
 sudo systemctl status bind9
 echo " "
 sleep 5s
-echo ----Fin---- 
+echo         ----Fin---- 
 echo ---- © ServiCod 2021 -----------------------------
 
 
