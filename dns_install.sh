@@ -76,13 +76,13 @@ type master;
 file "/etc/bind/db.'$ip_tres'";
 };' >> /etc/bind/named.conf.local
 
-sudo sudo cat /etc/bind/named.conf.local
+sudo cat /etc/bind/named.conf.local
 
 echo ------------------------------------------------
 
 sudo cp /etc/bind/db.local /etc/bind/db.$root_zona
 
-sudo sudo cat /etc/bind/db.$root_zona
+sudo cat /etc/bind/db.$root_zona
 
 sudo chmod -R 777 /etc/bind/
 
