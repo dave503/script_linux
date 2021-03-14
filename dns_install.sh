@@ -143,11 +143,13 @@ echo Verificar la configuración de la zona inversa -----
 named-checkzone $root_zona /etc/bind/db.$ip_tres
 echo " "
 sudo cat /etc/default/named
+sudo shmod -R 777 /etc/default/
 echo ---------------------------------------------------
 echo "Configurando servidor, solo para IPv4"
 sudo sed -i "6d" /etc/default/named
 echo 'OPTIONS="-u bind -4"' >> /etc/default/named
 sleep 3s
+sudo cat /etc/default/named
 echo ------------------------------------------------
 echo Iniciando el servidor------------------------------
 sudo systemctl start bind9
