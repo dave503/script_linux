@@ -164,6 +164,8 @@ echo Iniciando el servidor------------------------------
 
 sudo systemctl start bind9
 
+sudo systemctl restart bind9
+
 echo Estado del servidor--------------------------------
 
 sudo systemctl status bind9
