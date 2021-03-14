@@ -71,7 +71,7 @@ file "/etc/bind/db.'$root_zona'";
 echo '
 // zona inversa
 
-zone "'$ip_tres.in-addr.arpa'" IN {
+zone "'$ip_tres'.in-addr.arpa" IN {
 type master;
 file "/etc/bind/db.'$ip_tres'";
 };' >> /etc/bind/named.conf.local
@@ -142,6 +142,13 @@ echo " "
 echo Verificar la configuración de la zona inversa -----
 named-checkzone $root_zona /etc/bind/db.$ip_tres
 echo " "
+sudo cat /etc/default/named
+echo ---------------------------------------------------
+echo "Configurando servidor, solo para IPv4"
+sudo sed -i "6d" /etc/default/named
+echo 'OPTIONS="-u bind -4"' >> /etc/default/named
+sleep 3s
+echo ------------------------------------------------
 echo Iniciando el servidor------------------------------
 sudo systemctl start bind9
 sleep 5s
