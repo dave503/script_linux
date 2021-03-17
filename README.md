@@ -39,7 +39,12 @@ vagrant up
 
 ### connect to vm
 ```
-vagran ssh vagrant@$SERVER_IP
+vagran ssh server
+```
+
+## Install git in vagrant vm
+```
+yum install -y git
 ```
 
 Then in the vm you can clone and follow the instructions to run the scripts that you need.
