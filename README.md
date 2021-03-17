@@ -13,6 +13,11 @@ git clone -b master git@github.com:dave503/script_linux.git
 cd script_linux/
 ```
 
+### Add execution permissions to bash scripts
+```
+chmod +x *.sh
+```
+
 ### Update list of apps available
 ```
 ./actualizar.sh
