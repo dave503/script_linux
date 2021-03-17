@@ -1,6 +1,10 @@
 Vagrant.configure("2") do |config|
     config.vm.define "server" do |server|
-      server.vm.box = "centos/8"
+      if ENV['VM_IMAGE'] == "centos/8" then
+        server.vm.box = "centos/8"
+      elsif
+        server.vm.box = "generic/debian10"
+      end
       server.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/me.pub"
       server.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/supersecret"
       server.vm.provision "shell", inline: <<-SHELL

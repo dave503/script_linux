@@ -36,8 +36,19 @@ chmod +x *.sh
 ## Run with Vagrant
 
 ### Setup IP Address 
+```
 SERVER_IP=192.168.23.2
+```
 
+### Setup your VM Image
+You can use a Redhat based distro
+```
+VM_IMAGE=centos/8
+```
+or Debian based distro
+```
+VM_IMAGE=generic/debian10
+```
 ### Run vm in vagrant VM
 ```
 vagrant up
