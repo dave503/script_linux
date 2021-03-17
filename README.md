@@ -4,7 +4,8 @@ Son script creados con el fin de automatizar algunos procesos en el sistema linu
 ## Run without Vagrant
 ### Clone the repository
 ```
-git clone https://github.com/dave503/script_linux.git
+git clone git@github.com:dave503/script_linux.git
+
 ```
 
 ### Move to the scripts directory
