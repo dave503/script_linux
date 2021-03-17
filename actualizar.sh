@@ -5,7 +5,7 @@ sleep 2s
 YUM_CMD=$(which yum)
 APT_GET_CMD=$(which apt-get)
 if [[ -n $YUM_CMD ]]; then
-    sudo yum update
+    sudo yum -y update
     echo '*********************************************'
     echo 'Instalando paquetes' 
     sleep 2s
